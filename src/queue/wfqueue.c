@@ -796,29 +796,6 @@ void queue_register(queue_t *q, handle_t *th) {
 
 extern zm_thread_local int tid;
 
-/* Check the actual affinity mask assigned to the thread */
-static inline void check_affinity(hwloc_topology_t topo) {
-    hwloc_cpuset_t cpuset = hwloc_bitmap_alloc();
-    int set_length;
-    hwloc_get_cpubind(topo, cpuset, HWLOC_CPUBIND_THREAD);
-    set_length = hwloc_get_nbobjs_inside_cpuset_by_type(topo, cpuset, HWLOC_OBJ_PU);
-    hwloc_bitmap_free(cpuset);
-
-    if(set_length != 1) {
-        printf("IZEM:WFQUEUE:ERROR: thread bound to more than one HW thread!\n");
-        exit(EXIT_FAILURE);
-    }
-}
-
-static inline int get_hwthread_id(hwloc_topology_t topo){
-    hwloc_cpuset_t cpuset = hwloc_bitmap_alloc();
-    hwloc_obj_t obj;
-    hwloc_get_cpubind(topo, cpuset, HWLOC_CPUBIND_THREAD);
-    obj = hwloc_get_obj_inside_cpuset_by_type(topo, cpuset, HWLOC_OBJ_PU, 0);
-    hwloc_bitmap_free(cpuset);
-    return obj->logical_index;
-}
-
 int zm_wfqueue_init(zm_wfqueue_t *Q) {
     queue_t *q;
     int nprocs;

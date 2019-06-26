@@ -11,6 +11,7 @@ TESTS = \
 	thread_scale_mpmc_ms \
 	thread_scale_mpmc_dsm \
 	thread_scale_mpmc_idsm \
+	thread_scale_mpmc_imcs \
 	thread_scale_mpmc_wf \
 	thread_scale_mpsc_gl \
 	thread_scale_mpsc_swp \
@@ -40,6 +41,7 @@ thread_scale_mpmc_gl_SOURCES = thread_scale.c
 thread_scale_mpmc_ms_SOURCES = thread_scale.c
 thread_scale_mpmc_dsm_SOURCES = thread_scale.c
 thread_scale_mpmc_idsm_SOURCES = thread_scale.c
+thread_scale_mpmc_imcs_SOURCES = thread_scale.c
 thread_scale_mpmc_wf_SOURCES = thread_scale.c
 thread_scale_mpsc_gl_SOURCES = thread_scale.c
 thread_scale_mpsc_swp_SOURCES = thread_scale.c
@@ -60,6 +62,7 @@ thread_scale_mpmc_gl_CFLAGS = -DZM_QUEUE_CONF=ZM_GLQUEUE_IF -DZMTEST_MPMC -DZMTE
 thread_scale_mpmc_ms_CFLAGS = -DZM_QUEUE_CONF=ZM_MSQUEUE_IF -DZMTEST_MPMC -DZMTEST_ALLOC_QELEM -fopenmp
 thread_scale_mpmc_dsm_CFLAGS = -DZM_QUEUE_CONF=ZM_DSMQUEUE_IF -DZMTEST_MPMC -DZMTEST_ALLOC_QELEM -fopenmp
 thread_scale_mpmc_idsm_CFLAGS = -DZM_QUEUE_CONF=ZM_IDSMQUEUE_IF -DZMTEST_MPMC -DZMTEST_ALLOC_QELEM -fopenmp
+thread_scale_mpmc_imcs_CFLAGS = -DZM_QUEUE_CONF=ZM_IMCSQUEUE_IF -DZMTEST_MPMC -DZMTEST_ALLOC_QELEM -fopenmp
 thread_scale_mpmc_wf_CFLAGS = -DZM_QUEUE_CONF=ZM_WFQUEUE_IF -DZMTEST_MPMC -DZMTEST_ALLOC_QELEM -fopenmp
 thread_scale_mpsc_gl_CFLAGS = -DZM_QUEUE_CONF=ZM_GLQUEUE_IF -DZMTEST_MPSC -DZMTEST_ALLOC_QELEM -fopenmp
 thread_scale_mpsc_swp_CFLAGS = -DZM_QUEUE_CONF=ZM_SWPQUEUE_IF -DZMTEST_MPSC -fopenmp
@@ -80,6 +83,7 @@ thread_scale_mpmc_gl_LDFLAGS = -fopenmp
 thread_scale_mpmc_ms_LDFLAGS = -fopenmp
 thread_scale_mpmc_dsm_LDFLAGS = -fopenmp
 thread_scale_mpmc_idsm_LDFLAGS = -fopenmp
+thread_scale_mpmc_imcs_LDFLAGS = -fopenmp
 thread_scale_mpmc_wf_LDFLAGS = -fopenmp
 thread_scale_mpsc_gl_LDFLAGS = -fopenmp
 thread_scale_mpsc_swp_LDFLAGS = -fopenmp

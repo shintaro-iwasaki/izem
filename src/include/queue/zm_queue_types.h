@@ -7,6 +7,7 @@
 #define _ZM_QUEUE_TYPES_H
 #include "common/zm_common.h"
 #include "lock/zm_dsmsync.h"
+#include "lock/zm_imcs.h"
 #include <pthread.h>
 #include <limits.h>
 
@@ -95,12 +96,21 @@ struct zm_dsmqueue {
     zm_ptr_t tail ZM_ALLIGN_TO_CACHELINE;
 };
 
+typedef struct zm_mcsqueue zm_mcsqueue_t;
+
+struct zm_mcsqueue {
+    zm_mcs_t L;
+    zm_ptr_t head ZM_ALLIGN_TO_CACHELINE;
+    zm_ptr_t tail ZM_ALLIGN_TO_CACHELINE;
+};
+
 /* Common structure to allow runtime selection */
 
 typedef union zm_queue {
     zm_glqueue_t  glqueue;
     zm_msqueue_t  msqueue;
     zm_dsmqueue_t dsmqueue;
+    zm_mcsqueue_t mcsqueue;
     zm_swpqueue_t swpqueue;
     zm_wfqueue_t  wfqueue;
     zm_faqueue_t  faqueue;
